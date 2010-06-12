@@ -1,0 +1,17 @@
+{
+    "name": "fatbot",
+    "version": "0.0.1",
+    "description": "an IRC bot for nodejs",
+    "homepage": "http://github.com/dunkfordyce/fatbot",
+    "keywords": [
+        "nodejs",
+        "node",
+        "irc",
+        "bot"
+    ],
+    "maintainers": [{ 
+        "name": "Dunk Fordyce",
+        "email": "dunkfordyce@gmail.com"
+    }]
+}
+
