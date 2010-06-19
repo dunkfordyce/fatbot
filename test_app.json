@@ -1,0 +1,39 @@
+{
+    "servers": {
+        "freenode": {
+            "hostname": "irc.freenode.net",
+            "port": 6667,
+            "nick": "fattybott",
+            "realname": "fattybott",
+            "username": "fattybott"
+        }
+    },
+
+    "plugins": [
+        {
+            "module": "fatbot/plugins/auth",
+            "servers": {
+                "freenode": {
+                    "allowed": [ ]
+                }
+            }
+        },
+        
+        {
+            "module": "fatbot/plugins/simple_command_listener"
+        },
+        {
+            "module": "fatbot/plugins/bot"
+        },
+        {
+            "module": "fatbot/plugins/app_autoserver", 
+            "servers": ["freenode"]
+        },
+        {
+            "module": "fatbot/plugins/server_autojoin",
+            "servers": {
+                "freenode": ["#fatbot"]
+            }
+        },
+    ]
+}
