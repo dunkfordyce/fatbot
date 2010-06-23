@@ -2,10 +2,7 @@
     "servers": {
         "freenode": {
             "hostname": "irc.freenode.net",
-            "port": 6667,
-            "nick": "fattybott",
-            "realname": "fattybott",
-            "username": "fattybott"
+            "nick": "fattybott"
         }
     },
 
@@ -20,7 +17,7 @@
         },
         
         {
-            "module": "fatbot/plugins/simple_command_listener"
+            "module": "fatbot/plugins/socket_command_listener"
         },
         {
             "module": "fatbot/plugins/bot"
@@ -34,6 +31,6 @@
             "servers": {
                 "freenode": ["#fatbot"]
             }
-        },
+        }
     ]
 }
