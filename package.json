@@ -12,6 +12,8 @@
     "maintainers": [{ 
         "name": "Dunk Fordyce",
         "email": "dunkfordyce@gmail.com"
-    }]
+    }],
+    "directories" : { "lib" : "./lib/fatbot" },
+    "bin" : { "fatbot" : "./run.js" }
 }
 

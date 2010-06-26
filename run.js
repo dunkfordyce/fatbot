@@ -3,6 +3,17 @@ var sys = require('sys'),
     logging = require('fatbot/logging'),
     log = logging.log;
 
+sys.puts(sys.inspect(process.argv));
+
+var opts = {};
+
+for( var i=2; i!= process.argv.length; i++ ) { 
+    var opt = process.argv[i];
+    if( opt[0] == '-' ) {
+        
+    }      
+}
+
 if( process.argv.length < 3 ) {
     sys.puts("pass an app.json file as the argument!");
     process.exit(1)
