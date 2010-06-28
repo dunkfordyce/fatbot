@@ -1,35 +1,69 @@
 var sys = require('sys'),
+    fs = require('fs'),
     App = require('fatbot/app').App,
+    command_handler = require('fatbot/command_handler'),
+    utils = require('fatbot/utils'),
     logging = require('fatbot/logging'),
     log = logging.log;
 
-sys.puts(sys.inspect(process.argv));
+log.options.level = logging.levels.info;
+var console_handler = new logging.ConsoleHandler(log, logging.console_color_formatter());
 
-var opts = {};
+var args = {};
+command_handler.args_from_string(args, process.argv.slice(2));
 
-for( var i=2; i!= process.argv.length; i++ ) { 
-    var opt = process.argv[i];
-    if( opt[0] == '-' ) {
-        
-    }      
+function show_help() { 
+    sys.puts('fatbot [opts] your_config.json');
+    sys.puts('  --verbose');
+    sys.puts('      show debug messages');
+    sys.puts('  --quiet');
+    sys.puts('      dont output logging to stdout');
+    sys.puts('  --logfile=FILE')
+    sys.puts('      output logging to FILE');
+};
+
+if( args.help ) {
+    show_help();
+    process.exit(0);
 }
 
-if( process.argv.length < 3 ) {
-    sys.puts("pass an app.json file as the argument!");
+if( !args.args ) {
+    log.error('you must pass a config file!\n');
+    show_help();
     process.exit(1)
 }
 
 // config the intervaler logger now to set a nicer level 
-logging.log.Logger({name: 'intervaler', level: logging.levels.info});
-// send color logging messages to the console
-logging.ConsoleHandler(logging.log, logging.console_color_formatter());
-// send logging messages to a log file 
-logging.FileHandler(logging.log, 'output.log')
+log.Logger({name: 'intervaler', level: logging.levels.info});
 
-var opts_fn = process.argv[2];
-var app = new App(opts_fn);
+if( args.verbose ) { 
+    log.options.level = logging.levels.debug;
+}
+if( args.quiet ) {
+    console_handler.remove();   
+}
+if( args.logfile && typeof args.logfile == 'string') { 
+    // send logging messages to a log file 
+    var file_handler = new logging.FileHandler(log, args.logfile)
+}
+
+process.addListener('error', function(err) {
+    log.exception(err, 'UNCAUGHT ERROR');
+});
+
+try { 
+    var data = fs.readFileSync(args.args);
+    options = JSON.parse(data.toString());
+} catch(e) { 
+    log.error('failed opening config: '+e);
+    log.info('your config file probably isnt valid json - try http://www.jsonlint.com');
+    process.exit(1);
+}
+
+var app = new App(options);
 log.info('created app ok');
 log.info('loading plugins...');
 app.load_plugins();
 log.info('all systems are go!');
 app.start();
+

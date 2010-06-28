@@ -11,11 +11,14 @@
             "module": "fatbot/plugins/auth",
             "servers": {
                 "freenode": {
-                    "allowed": [ ]
+                    "allowed": [ 
+                    ]
                 }
             }
         },
-        
+        {
+            "module": "fatbot/plugins/server_reconnect"
+        },
         {
             "module": "fatbot/plugins/socket_command_listener"
         },
