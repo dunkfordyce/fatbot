@@ -4,9 +4,9 @@ An irc bot and more for node.
 
 ## config 
 
-For a sample config see http://github.com/dunkfordyce/fatbot/blob/master/sample_config.json
+See the [sample config](http://github.com/dunkfordyce/fatbot/blob/master/sample_config.json)
 
 
 ## plugins
 
-For more information on plugins see http://github.com/dunkfordyce/fatbot/blob/master/docs/plugins.md
+See the [plugin docs](http://github.com/dunkfordyce/fatbot/blob/master/docs/plugins.md)
