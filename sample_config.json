@@ -9,12 +9,15 @@
     "plugins": [
         {
             "module": "fatbot/plugins/auth",
-            "servers": {
-                "freenode": {
-                    "allowed": [ 
-                    ]
+            "allow": [ 
+                {
+                    "source": "socket"
+                },
+                {
+                    "source": "bot",
+                    "prefix": "someuser!~someuser@12.34.56.78.somehost.co.uk"
                 }
-            }
+            ]
         },
         {
             "module": "fatbot/plugins/server_reconnect"
