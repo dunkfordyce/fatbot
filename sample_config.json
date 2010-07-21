@@ -16,6 +16,10 @@
                 {
                     "source": "bot",
                     "prefix": "someuser!~someuser@12.34.56.78.somehost.co.uk"
+                },
+                {
+                    "source": "bot",
+                    "command": ["beer", "list"]
                 }
             ]
         },
@@ -37,6 +41,9 @@
             "servers": {
                 "freenode": ["#fatbot"]
             }
+        },
+        {
+            "module": "./fattybumbum.json"
         }
     ]
 }
